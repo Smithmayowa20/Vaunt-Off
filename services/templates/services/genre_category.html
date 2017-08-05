@@ -1,0 +1,15 @@
+{% extends 'services/base.html' %}
+       {% block title %} {{block.super}} {% endblock title %}
+    {% block content %}
+	<div class="text-center"> <h2> FRONT-PAGE POSTS FROM OUR {{category}} SECTION </h2> </div><br/><br/>
+	{% for i in post %}
+	<div class="col-sm-12"><p><h3>{{ i.text|safe }}</h3></p>
+	<pre>BOOSTED POST</pre>
+	<a href="{% url 'post_detail' slug=i.slug %}"><p class="text-right"><span class="btn btn-info">View comments</span></p></a></div><br/><br/>
+	{% endfor %}
+	{% for i in post_2 %}
+	<div class="col-sm-12"><p><h3>{{ i.text|safe }}</h3></p>
+	<a href="{% url 'post_detail' slug=i.slug %}"><p class="text-right"><span class="btn btn-info">View comments</span></p></a></div><br>
+	{% endfor %}
+	{% endblock content %}
+	
