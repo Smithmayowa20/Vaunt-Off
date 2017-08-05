@@ -72,11 +72,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>                      
 				</button>
-				<a class="navbar-brand" href="#mypage"> VAUNT-OFF </a>
+				<a class="navbar-brand" href="{% url 'landing_page' %}"> VAUNT-OFF </a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#inbox">INBOX</a></li>
+					<li><a href="#inbox">NOTIFICATIONS</a></li>
 					<li><a href="#"></a></li>
 					{% if user.is_authenticated %}
 						<li>
@@ -92,7 +92,7 @@
 						
 					{% endif %}
 					<li>
-							<a href="#profile_page">{{ request.user.username|title }}</a>
+							<a href="{% url 'profile_page' %}">{{ request.user.username|upper }}</a>
 						</li>
 				</ul>
 			</div>

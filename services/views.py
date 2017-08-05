@@ -56,7 +56,6 @@ def landing_page(request):
 		post_key = str(post_genre.category)
 		post_dict[post_key] = post
 		post_key2 = str(post_genre.category) + "1"
-		post_1 = post[0]
 		post_dict[post_key2] = post_genre.category
 	return (render(request,'services/landing_page.html',post_dict,))
 	
@@ -64,7 +63,7 @@ def genre_category(request,category):
 	genre = Genre.objects.get(category=category)
 	post = Post.objects.filter(genre = genre, front_page = True)
 	post_2 = Post.objects.filter(genre = genre, front_page = False)
-	c = category.upper()
+	c = category
 	paginator = Paginator(post_2, 10) # Show 25 contacts per page
 	page = request.GET.get('page')
 	try:
@@ -95,11 +94,44 @@ class c:
 
 def create_follower_following(request,user1):
 	following_class = FollowingForm
-	form = following_class()
+	person_profile = User_Profile.objects.get(user=user1)
+	person = person_profile.user
+	form = following_class(request.GET)
 	form.action = request.user
-	form.reaction = user
-	form.save()		
+	form.reaction = person
+	form.save()
 	return redirect('profile_page')
+	
+def new_post(request,category):
+	form_class = PostForm
+    # if we're coming from a submitted form, do this
+	if request.method == 'POST':
+        # grab the data from the submitted form and
+        # apply to the form
+		form = form_class(request.POST)
+		if form.is_valid():
+            # create an instance but don't save yet
+			thing = form.save(commit=False)
+
+            # set the additional details
+			thing.user = request.user
+			thing.slug = slugify(thing.text,)
+			genre = Genre.objects.get(category = category)
+			thing.genre = genre
+			
+            # save the object
+			thing.publish()
+
+            # redirect to our newly created thing
+			return redirect('post_detail',slug=thing.slug)
+
+    # otherwise just create the form
+	else:
+		form = form_class()
+
+	return render(request,'services/new_post.html', {
+		'form': form,
+	})
 	
 def post_detail(request,slug):
 	recent_post = (Post.objects.all().order_by('-published_date'))[0:5]

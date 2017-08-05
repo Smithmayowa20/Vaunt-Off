@@ -5,7 +5,7 @@
 <p><h3>{{ post.text|safe|linebreaksbr }}</h3></p>
 </div>
 <div class="text-right">
-<a href="{% url 'profile_page2' user=post.user.id %}"><h3><div class="text-center">written by:{{post.user|safe|linebreaksbr}}</div></h3></a>
+<a href="{% url 'profile_page2' user=post.user %}"><h3><div class="text-center">written by:{{post.user|safe|linebreaksbr}}</div></h3></a>
 <h3><div class="text-right">{{post.published_date|safe|linebreaksbr}}</div></h3>
 <br/>
 </div>

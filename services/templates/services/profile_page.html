@@ -8,7 +8,7 @@
 		{% endif %}
 		<p>Username:<br/> {{ profile.user }} </p> 
 			{% if user != profile.user %}
-		<a href="{% url 'follower_following' user1=profile.user %}"> <span class="btn btn-info"> Follow-{{profile.user}} </span></a><br/><br/>
+		<a href="{% url 'follower_following' user1=profile.user.id %}"> <span class="btn btn-info"> Follow-{{profile.user}} </span></a><br/><br/>
 			{% endif %}
 		<p>Short Bio:<br/> {{ profile.short_bio }} </p>
 		</div>
