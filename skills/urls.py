@@ -25,6 +25,7 @@ app_name = 'services'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'', include('services.urls')),
+	url(r'^summernote/',include('django_summernote.urls')),
 	url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 	url(r'^accounts/register/$', RegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name='registration_register'),
 	url(r'^accounts/', include('registration.backends.simple.urls')),

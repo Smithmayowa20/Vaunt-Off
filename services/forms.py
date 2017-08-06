@@ -4,6 +4,7 @@ from django.forms import ModelForm, Textarea, CharField, RadioSelect
 from .models import Post, Comment, User_Profile, Following
 
 from registration.forms import RegistrationFormUniqueEmail
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 class RegistroperfilForm(RegistrationFormUniqueEmail):
 	first_name = CharField(required = True)
@@ -14,9 +15,9 @@ class PostForm(ModelForm):
 	class Meta:
 		model = Post
 		fields = ('text',)
-		widgets ={
-			'summary' : Textarea(attrs={'rows':80, 'cols':20}),
-			}
+		widgets = {
+            'text': SummernoteWidget(),
+        }
 			
 class CommentForm(ModelForm):
 	class Meta:

@@ -31,7 +31,8 @@ class Post(models.Model):
 			blank=True, null=True)
 	front_page = models.BooleanField(
 			default = False)
-	text = RichTextUploadingField()
+	text = models.TextField(
+			blank=True,null=True)
 	created_date = models.DateTimeField(
 			default=timezone.now)
 	published_date = models.DateTimeField(
