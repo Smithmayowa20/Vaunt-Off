@@ -9,3 +9,4 @@ lazy-object-proxy==1.2.2
 Pillow==4.0.0
 psycopg2==2.6.2
 whitenoise==3.30
+python-decouple-3.0
