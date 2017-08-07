@@ -10,3 +10,4 @@ python-dateutil==2.6.0
 python-decouple==3.0
 requests==2.12.4
 whitenoise==3.3.0
+dj-static
